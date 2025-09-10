@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Echo功能</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="content-script.css" />
+	<link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Echo功能</h1>
+		<p>输入什么，就输出什么</p>
+		<div class="input-container">
+			<input type="text" id="echo-input" placeholder="请输入内容..." />
+			<button id="echo-button">Echo</button>
+		</div>
+		<div class="output-container">
+			<h3>输出结果：</h3>
+			<div id="echo-output"></div>
+		</div>
+	</div>
+
+	<!-- 内联JavaScript代码，避免加载顺序问题 -->
+	<script>
+		// 直接执行echo功能的初始化
+		function initEchoFeature() {
+			// 获取DOM元素
+			const echoInput = document.getElementById('echo-input');
+			const echoButton = document.getElementById('echo-button');
+			const echoOutput = document.getElementById('echo-output');
+			
+			// 确保所有元素都存在
+			if (!echoInput || !echoButton || !echoOutput) {
+				return;
+			}
+
+			// Echo功能的实现
+			function performEcho() {
+				const inputText = echoInput.value;
+				echoOutput.textContent = inputText;
+			}
+
+			// 点击按钮时执行echo功能
+			echoButton.addEventListener('click', function() {
+				performEcho();
+			});
+
+			// 按下Enter键时也执行echo功能
+			echoInput.addEventListener('keypress', function(event) {
+				if (event.key === 'Enter') {
+					performEcho();
+				}
+			});
+		}
+		
+		// 确保DOM加载完成后执行初始化
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", initEchoFeature);
+		} else {
+			initEchoFeature();
+		}
+	</script>
+	
+	<!-- 保留原始的外部脚本引用，但放在内联脚本之后 -->
+	<script src="index.js"></script>
+	<script src="content-script.js"></script>
+</body>
+</html>
