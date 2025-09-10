@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>随机工具</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>随机工具</h1>
+			<p class="subtitle">生成各种随机内容的实用工具</p>
+		</header>
+
+		<div class="tools-container">
+			<!-- 随机密码生成器 -->
+			<section class="tool-card" id="random-password">
+				<div class="tool-header">
+					<h2>随机密码生成器</h2>
+					<span class="tool-icon">🔐</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-group">
+						<label for="password-length">长度:</label>
+						<input type="number" id="password-length" value="12" min="8" max="32" />
+					</div>
+					<div class="checkbox-group">
+						<div class="checkbox-item">
+							<input type="checkbox" id="pwd-uppercase" checked />
+							<label for="pwd-uppercase">大写字母 (A-Z)</label>
+						</div>
+						<div class="checkbox-item">
+							<input type="checkbox" id="pwd-lowercase" checked />
+							<label for="pwd-lowercase">小写字母 (a-z)</label>
+						</div>
+						<div class="checkbox-item">
+							<input type="checkbox" id="pwd-numbers" checked />
+							<label for="pwd-numbers">数字 (0-9)</label>
+						</div>
+						<div class="checkbox-item">
+							<input type="checkbox" id="pwd-special" checked />
+							<label for="pwd-special">特殊字符 (!@#$%^&*)</label>
+						</div>
+					</div>
+					<div class="strength-meter">
+						<label>密码强度:</label>
+						<div class="strength-bar">
+							<div id="strength-indicator" class="strength-indicator"></div>
+						</div>
+						<span id="strength-text">中等</span>
+					</div>
+					<button id="generate-password" class="generate-btn">生成随机密码</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="password-result" class="result">-</div>
+						<button id="copy-password" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机字符串生成器 -->
+			<section class="tool-card" id="random-string">
+				<div class="tool-header">
+					<h2>随机字符串生成器</h2>
+					<span class="tool-icon">🔤</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-group">
+						<label for="string-length">长度:</label>
+						<input type="number" id="string-length" value="16" min="1" max="100" />
+					</div>
+					<div class="checkbox-group">
+						<div class="checkbox-item">
+							<input type="checkbox" id="uppercase" checked />
+							<label for="uppercase">大写字母 (A-Z)</label>
+						</div>
+						<div class="checkbox-item">
+							<input type="checkbox" id="lowercase" checked />
+							<label for="lowercase">小写字母 (a-z)</label>
+						</div>
+						<div class="checkbox-item">
+							<input type="checkbox" id="numbers" checked />
+							<label for="numbers">数字 (0-9)</label>
+						</div>
+						<div class="checkbox-item">
+							<input type="checkbox" id="special" />
+							<label for="special">特殊字符 (!@#$%^&*)</label>
+						</div>
+					</div>
+					<button id="generate-string" class="generate-btn">生成随机字符串</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="string-result" class="result">-</div>
+						<button id="copy-string" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- UUID生成器 -->
+			<section class="tool-card" id="uuid-generator">
+				<div class="tool-header">
+					<h2>UUID生成器</h2>
+					<span class="tool-icon">🆔</span>
+				</div>
+				<div class="tool-content">
+					<div class="radio-group">
+						<div class="radio-item">
+							<input type="radio" id="uuid-v4" name="uuid-version" checked />
+							<label for="uuid-v4">UUID v4 (随机)</label>
+						</div>
+					</div>
+					<button id="generate-uuid" class="generate-btn">生成UUID</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="uuid-result" class="result">-</div>
+						<button id="copy-uuid" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机数生成器 -->
+			<section class="tool-card" id="random-number">
+				<div class="tool-header">
+					<h2>随机数生成器</h2>
+					<span class="tool-icon">🎲</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-group">
+						<label for="min-number">最小值:</label>
+						<input type="number" id="min-number" value="1" />
+					</div>
+					<div class="input-group">
+						<label for="max-number">最大值:</label>
+						<input type="number" id="max-number" value="100" />
+					</div>
+					<button id="generate-number" class="generate-btn">生成随机数</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="number-result" class="result">-</div>
+						<button id="copy-number" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<footer>
+			<p>随机工具 - 使用原生JavaScript和CSS实现</p>
+		</footer>
+	</div>
+
+	<div id="toast" class="toast">已复制到剪贴板</div>
+
+	<!-- 内联脚本初始化 -->
+	<script>
+		console.log('页面加载中...');
+		
+		// 初始化随机工具函数
+		function initRandomTools() {
+			console.log('内联脚本初始化随机工具...');
+			
+			// 获取DOM元素
+			const generateNumberBtn = document.getElementById('generate-number');
+			const generateStringBtn = document.getElementById('generate-string');
+			const generatePasswordBtn = document.getElementById('generate-password');
+			const generateUuidBtn = document.getElementById('generate-uuid');
+			
+			console.log('按钮状态:', {
+				generateNumberBtn: generateNumberBtn ? '已找到' : '未找到',
+				generateStringBtn: generateStringBtn ? '已找到' : '未找到',
+				generatePasswordBtn: generatePasswordBtn ? '已找到' : '未找到',
+				generateUuidBtn: generateUuidBtn ? '已找到' : '未找到'
+			});
+		}
+		
+		// 确保DOM加载完成后初始化
+		if (document.readyState === 'loading') {
+			console.log('DOM正在加载，添加DOMContentLoaded事件监听器');
+			document.addEventListener('DOMContentLoaded', initRandomTools);
+		} else {
+			console.log('DOM已加载完成，直接初始化');
+			initRandomTools();
+		}
+	</script>
+	
+	<!-- 引入外部脚本 -->
+	<script src="index.js"></script>
+</body>
+</html>
