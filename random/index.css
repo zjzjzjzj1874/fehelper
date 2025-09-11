@@ -1,16 +1,23 @@
-/* 全局样式 */
+/* 全局样式 - FeHelper红蓝主题 */
 :root {
-    --primary-color: #4a6baf;
-    --primary-light: #6b8cd0;
-    --primary-dark: #344c7c;
-    --secondary-color: #f8f9fa;
+    --primary-color: #e74c3c;
+    --primary-light: #f5746a;
+    --primary-dark: #c0392b;
+    --secondary-color: #3498db;
+    --secondary-light: #5dade2;
+    --secondary-dark: #2980b9;
+    --background-color: #f9f9f9;
+    --card-bg-color: #ffffff;
     --text-color: #333;
-    --border-color: #ddd;
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --text-light: #666;
+    --border-color: #e0e0e0;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     --transition-speed: 0.3s;
+    --tab-active-border: 3px solid var(--primary-color);
+    --tab-hover-bg: rgba(231, 76, 60, 0.05);
 }
 
 * {
@@ -23,7 +30,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: #f0f2f5;
+    background-color: var(--background-color);
     padding: 20px;
 }
 
@@ -35,22 +42,63 @@ body {
 /* 头部样式 */
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 20px;
-    background-color: white;
+    background-color: var(--card-bg-color);
     border-radius: 10px;
     box-shadow: var(--card-shadow);
+    border-top: 3px solid var(--primary-color);
 }
 
 h1 {
     color: var(--primary-color);
     margin-bottom: 10px;
     font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .subtitle {
-    color: #666;
+    color: var(--text-light);
     font-size: 1.1rem;
+}
+
+/* Tab样式 */
+.tabs-container {
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+.tab {
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: var(--text-color);
+    position: relative;
+    text-align: center;
+    flex: 1;
+}
+
+.tab:hover {
+    background-color: var(--tab-hover-bg);
+    color: var(--primary-color);
+}
+
+.tab.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: 0 -3px 0 var(--primary-color) inset;
+    background-color: rgba(231, 76, 60, 0.08);
 }
 
 /* 工具容器 */
@@ -63,15 +111,17 @@ h1 {
 
 /* 工具卡片 */
 .tool-card {
-    background-color: white;
+    background-color: var(--card-bg-color);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--card-shadow);
-    transition: transform var(--transition-speed);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    border-left: 3px solid var(--secondary-color);
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
 .tool-header {
@@ -79,13 +129,14 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
     color: white;
 }
 
 .tool-header h2 {
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .tool-icon {
@@ -104,7 +155,7 @@ h1 {
 }
 
 .input-group label {
-    width: 80px;
+    width: 100px;
     font-weight: 500;
 }
 
@@ -114,20 +165,222 @@ input[type="number"] {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.checkbox-group, .radio-group {
+input[type="number"]:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    outline: none;
+}
+
+input[type="date"] {
+    width: 160px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--card-bg-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+}
+
+input[type="date"]:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    outline: none;
+}
+
+/* 下拉选择框样式 */
+.select-group {
+    display: flex;
+    align-items: center;
     margin-bottom: 15px;
 }
 
-.checkbox-item, .radio-item {
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
+.select-group label {
+    width: 100px;
+    font-weight: 500;
 }
 
-.checkbox-item input, .radio-item input {
-    margin-right: 10px;
+select {
+    width: 200px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--card-bg-color);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    outline: none;
+}
+
+#email-domain,
+#date-format {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* 美化日期选择器 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
+    filter: invert(0.5);
+    transition: opacity 0.2s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+input[type="date"] {
+    padding-right: 30px;
+    position: relative;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 14px;
+    height: 36px;
+    transition: all 0.3s ease;
+}
+
+input[type="date"]:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    outline: none;
+}
+
+/* 复选框/单选框组样式 */
+.checkbox-group,
+.radio-group {
+	margin-bottom: 15px;
+}
+
+.checkbox-item, 
+.radio-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.checkbox-item input, 
+.radio-item input {
+	margin-right: 8px;
+	cursor: pointer;
+}
+
+/* 水平布局样式 */
+.horizontal-options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	align-items: center;
+}
+
+.horizontal-options .checkbox-item,
+.horizontal-options .radio-item {
+	margin-bottom: 0;
+	margin-right: 15px;
+}
+
+.input-with-options {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+	flex-wrap: wrap;
+}
+
+.input-with-options label:first-child {
+	width: 100px;
+	font-weight: 500;
+}
+
+.input-with-options label.auto-width {
+	width: auto;
+	margin: 0 10px;
+}
+	font-weight: 500;
+	margin-right: 10px;
+}
+
+.input-with-options input[type="number"] {
+	margin-right: 15px;
+}
+
+.input-with-options .checkbox-item,
+.input-with-options .radio-item {
+	margin-bottom: 0;
+}
+
+/* 下拉选择框样式 */
+.select-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.select-group label {
+    width: 100px;
+    font-weight: 500;
+}
+
+select {
+    width: 200px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 107, 175, 0.25);
+    outline: none;
+}
+
+/* 邮箱域名选择样式 */
+#email-domain {
+    background-color: #f8f9fa;
+    font-family: monospace;
+}
+
+#email-domain option {
+    padding: 8px;
+}
+
+/* 日期格式选择样式 */
+#date-format {
+    font-family: monospace;
 }
 
 /* 按钮样式 */
@@ -136,41 +389,49 @@ button {
     border: none;
     border-radius: 4px;
     font-size: 1rem;
+    transition: all 0.3s ease;
     transition: background-color var(--transition-speed);
 }
 
 .generate-btn {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     padding: 10px 15px;
     width: 100%;
     margin-bottom: 15px;
     font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .generate-btn:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
 }
 
 .copy-btn {
     background-color: var(--secondary-color);
-    color: var(--text-color);
+    color: white;
     padding: 5px 10px;
     font-size: 0.9rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .copy-btn:hover {
-    background-color: #e2e6ea;
+    background-color: var(--secondary-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 /* 结果容器 */
 .result-container {
     display: flex;
     align-items: center;
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
     padding: 10px 15px;
     border-radius: 4px;
     border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .result-label {

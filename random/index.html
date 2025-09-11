@@ -13,34 +13,44 @@
 			<p class="subtitle">生成各种随机内容的实用工具</p>
 		</header>
 
+		<div class="tabs-container">
+			<ul class="tabs">
+				<li class="tab active" data-tab="all">全部</li>
+				<li class="tab" data-tab="password">密码</li>
+				<li class="tab" data-tab="identity">身份</li>
+				<li class="tab" data-tab="date">日期时间</li>
+				<li class="tab" data-tab="number">数字</li>
+			</ul>
+		</div>
+
 		<div class="tools-container">
 			<!-- 随机密码生成器 -->
-			<section class="tool-card" id="random-password">
+			<section class="tool-card" id="random-password" data-category="password">
 				<div class="tool-header">
 					<h2>随机密码生成器</h2>
 					<span class="tool-icon">🔐</span>
 				</div>
 				<div class="tool-content">
-					<div class="input-group">
+					<div class="input-with-options">
 						<label for="password-length">长度:</label>
 						<input type="number" id="password-length" value="12" min="8" max="32" />
-					</div>
-					<div class="checkbox-group">
-						<div class="checkbox-item">
-							<input type="checkbox" id="pwd-uppercase" checked />
-							<label for="pwd-uppercase">大写字母 (A-Z)</label>
-						</div>
-						<div class="checkbox-item">
-							<input type="checkbox" id="pwd-lowercase" checked />
-							<label for="pwd-lowercase">小写字母 (a-z)</label>
-						</div>
-						<div class="checkbox-item">
-							<input type="checkbox" id="pwd-numbers" checked />
-							<label for="pwd-numbers">数字 (0-9)</label>
-						</div>
-						<div class="checkbox-item">
-							<input type="checkbox" id="pwd-special" checked />
-							<label for="pwd-special">特殊字符 (!@#$%^&*)</label>
+						<div class="horizontal-options">
+							<div class="checkbox-item">
+								<input type="checkbox" id="pwd-uppercase" checked />
+								<label for="pwd-uppercase">大写字母 (A-Z)</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="pwd-lowercase" checked />
+								<label for="pwd-lowercase">小写字母 (a-z)</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="pwd-numbers" checked />
+								<label for="pwd-numbers">数字 (0-9)</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="pwd-special" checked />
+								<label for="pwd-special">特殊字符 (!@#$%^&*)</label>
+							</div>
 						</div>
 					</div>
 					<div class="strength-meter">
@@ -60,32 +70,32 @@
 			</section>
 
 			<!-- 随机字符串生成器 -->
-			<section class="tool-card" id="random-string">
+			<section class="tool-card" id="random-string" data-category="password">
 				<div class="tool-header">
 					<h2>随机字符串生成器</h2>
 					<span class="tool-icon">🔤</span>
 				</div>
 				<div class="tool-content">
-					<div class="input-group">
+					<div class="input-with-options">
 						<label for="string-length">长度:</label>
 						<input type="number" id="string-length" value="16" min="1" max="100" />
-					</div>
-					<div class="checkbox-group">
-						<div class="checkbox-item">
-							<input type="checkbox" id="uppercase" checked />
-							<label for="uppercase">大写字母 (A-Z)</label>
-						</div>
-						<div class="checkbox-item">
-							<input type="checkbox" id="lowercase" checked />
-							<label for="lowercase">小写字母 (a-z)</label>
-						</div>
-						<div class="checkbox-item">
-							<input type="checkbox" id="numbers" checked />
-							<label for="numbers">数字 (0-9)</label>
-						</div>
-						<div class="checkbox-item">
-							<input type="checkbox" id="special" />
-							<label for="special">特殊字符 (!@#$%^&*)</label>
+						<div class="horizontal-options">
+							<div class="checkbox-item">
+								<input type="checkbox" id="uppercase" checked />
+								<label for="uppercase">大写字母 (A-Z)</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="lowercase" checked />
+								<label for="lowercase">小写字母 (a-z)</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="numbers" checked />
+								<label for="numbers">数字 (0-9)</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="special" />
+								<label for="special">特殊字符 (!@#$%^&*)</label>
+							</div>
 						</div>
 					</div>
 					<button id="generate-string" class="generate-btn">生成随机字符串</button>
@@ -98,16 +108,19 @@
 			</section>
 
 			<!-- UUID生成器 -->
-			<section class="tool-card" id="uuid-generator">
+			<section class="tool-card" id="uuid-generator" data-category="identity">
 				<div class="tool-header">
 					<h2>UUID生成器</h2>
 					<span class="tool-icon">🆔</span>
 				</div>
 				<div class="tool-content">
-					<div class="radio-group">
-						<div class="radio-item">
-							<input type="radio" id="uuid-v4" name="uuid-version" checked />
-							<label for="uuid-v4">UUID v4 (随机)</label>
+					<div class="input-with-options">
+						<label>版本:</label>
+						<div class="horizontal-options">
+							<div class="radio-item">
+								<input type="radio" id="uuid-v4" name="uuid-version" checked />
+								<label for="uuid-v4">UUID v4 (随机)</label>
+							</div>
 						</div>
 					</div>
 					<button id="generate-uuid" class="generate-btn">生成UUID</button>
@@ -119,19 +132,213 @@
 				</div>
 			</section>
 
+			<!-- 随机手机号生成器 -->
+			<section class="tool-card" id="random-phone" data-category="identity">
+				<div class="tool-header">
+					<h2>随机手机号生成器</h2>
+					<span class="tool-icon">📱</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-with-options">
+						<label>运营商:</label>
+						<div class="horizontal-options">
+							<div class="radio-item">
+								<input type="radio" id="phone-type-all" name="phone-type" checked />
+								<label for="phone-type-all">所有运营商</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="phone-type-cmcc" name="phone-type" />
+								<label for="phone-type-cmcc">中国移动</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="phone-type-cucc" name="phone-type" />
+								<label for="phone-type-cucc">中国联通</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="phone-type-ctcc" name="phone-type" />
+								<label for="phone-type-ctcc">中国电信</label>
+							</div>
+						</div>
+					</div>
+					<button id="generate-phone" class="generate-btn">生成随机手机号</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="phone-result" class="result">-</div>
+						<button id="copy-phone" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机用户名生成器 -->
+			<section class="tool-card" id="random-username" data-category="identity">
+				<div class="tool-header">
+					<h2>随机用户名生成器</h2>
+					<span class="tool-icon">👤</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-with-options">
+						<label for="username-length">长度:</label>
+						<input type="number" id="username-length" value="8" min="4" max="16" />
+						<div class="horizontal-options">
+							<div class="checkbox-item">
+								<input type="checkbox" id="username-letters" checked />
+								<label for="username-letters">字母</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="username-numbers" checked />
+								<label for="username-numbers">数字</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="username-underscore" />
+								<label for="username-underscore">下划线</label>
+							</div>
+						</div>
+					</div>
+					<button id="generate-username" class="generate-btn">生成随机用户名</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="username-result" class="result">-</div>
+						<button id="copy-username" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机邮箱生成器 -->
+			<section class="tool-card" id="random-email" data-category="identity">
+				<div class="tool-header">
+					<h2>随机邮箱生成器</h2>
+					<span class="tool-icon">📧</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-with-options">
+						<label for="email-name-length">用户名长度:</label>
+						<input type="number" id="email-name-length" value="8" min="4" max="20" />
+						<label for="email-domain" style="width: auto; margin-left: 15px; margin-right: 10px;">域名:</label>
+						<select id="email-domain">
+							<option value="random">随机</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="outlook.com">outlook.com</option>
+							<option value="qq.com">qq.com</option>
+							<option value="163.com">163.com</option>
+							<option value="126.com">126.com</option>
+							<option value="yahoo.com">yahoo.com</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="foxmail.com">foxmail.com</option>
+						</select>
+					</div>
+					<button id="generate-email" class="generate-btn">生成随机邮箱</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="email-result" class="result">-</div>
+						<button id="copy-email" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机IP地址生成器 -->
+			<section class="tool-card" id="random-ip" data-category="identity">
+				<div class="tool-header">
+					<h2>随机IP地址生成器</h2>
+					<span class="tool-icon">🌐</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-with-options">
+						<label>IP版本:</label>
+						<div class="horizontal-options">
+							<div class="radio-item">
+								<input type="radio" id="ip-v4" name="ip-version" checked />
+								<label for="ip-v4">IPv4</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="ip-v6" name="ip-version" />
+								<label for="ip-v6">IPv6</label>
+							</div>
+							<div class="checkbox-item" style="margin-left: 15px;">
+								<input type="checkbox" id="ip-internal" />
+								<label for="ip-internal">内网IP</label>
+							</div>
+						</div>
+					</div>
+					<button id="generate-ip" class="generate-btn">生成随机IP地址</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="ip-result" class="result">-</div>
+						<button id="copy-ip" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机日期生成器 -->
+			<section class="tool-card" id="random-date" data-category="date">
+				<div class="tool-header">
+					<h2>随机日期生成器</h2>
+					<span class="tool-icon">📅</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-with-options">
+						<label for="date-start">开始日期:</label>
+						<input type="date" id="date-start" value="2000-01-01" />
+						<label for="date-end" style="width: auto; margin-left: 15px; margin-right: 10px;">结束日期:</label>
+						<input type="date" id="date-end" />
+					</div>
+					<div class="select-group">
+						<label for="date-format">日期格式:</label>
+						<select id="date-format">
+							<option value="yyyy-MM-dd">年-月-日 (2023-01-31)</option>
+							<option value="dd/MM/yyyy">日/月/年 (31/01/2023)</option>
+							<option value="MM/dd/yyyy">月/日/年 (01/31/2023)</option>
+							<option value="yyyy年MM月dd日">年月日 (2023年01月31日)</option>
+						</select>
+					</div>
+					<button id="generate-date" class="generate-btn">生成随机日期</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="date-result" class="result">-</div>
+						<button id="copy-date" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 随机时间生成器 -->
+			<section class="tool-card" id="random-time" data-category="date">
+				<div class="tool-header">
+					<h2>随机时间生成器</h2>
+					<span class="tool-icon">🕒</span>
+				</div>
+				<div class="tool-content">
+					<div class="input-with-options">
+						<label>选项:</label>
+						<div class="horizontal-options">
+							<div class="checkbox-item">
+								<input type="checkbox" id="time-24h" checked />
+								<label for="time-24h">24小时制</label>
+							</div>
+							<div class="checkbox-item">
+								<input type="checkbox" id="time-seconds" checked />
+								<label for="time-seconds">包含秒数</label>
+							</div>
+						</div>
+					</div>
+					<button id="generate-time" class="generate-btn">生成随机时间</button>
+					<div class="result-container">
+						<span class="result-label">结果:</span>
+						<div id="time-result" class="result">-</div>
+						<button id="copy-time" class="copy-btn">复制</button>
+					</div>
+				</div>
+			</section>
+
 			<!-- 随机数生成器 -->
-			<section class="tool-card" id="random-number">
+			<section class="tool-card" id="random-number" data-category="number">
 				<div class="tool-header">
 					<h2>随机数生成器</h2>
 					<span class="tool-icon">🎲</span>
 				</div>
 				<div class="tool-content">
-					<div class="input-group">
+					<div class="input-with-options">
 						<label for="min-number">最小值:</label>
 						<input type="number" id="min-number" value="1" />
-					</div>
-					<div class="input-group">
-						<label for="max-number">最大值:</label>
+						<label for="max-number" style="width: auto; margin-left: 15px; margin-right: 10px;">最大值:</label>
 						<input type="number" id="max-number" value="100" />
 					</div>
 					<button id="generate-number" class="generate-btn">生成随机数</button>
@@ -185,5 +392,7 @@
 	
 	<!-- 引入外部脚本 -->
 	<script src="index.js"></script>
+	
+<!-- Tab切换功能已移至index.js -->
 </body>
 </html>
